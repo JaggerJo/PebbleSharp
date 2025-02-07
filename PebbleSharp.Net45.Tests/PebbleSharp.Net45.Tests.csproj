@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MSTest" Version="3.7.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PebbleSharp.Core.Tests\PebbleSharp.Core.Tests.csproj" />
+    <ProjectReference Include="..\PebbleSharp.Net45\PebbleSharp.Net45.csproj" />
+  </ItemGroup>
+
 </Project>

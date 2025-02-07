@@ -16,7 +16,9 @@ namespace PebbleSharp.Core.Tests.Responses
                 0xB4, 0x01, 0x01, 0x00, 0x00, 0x00, 0x02, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00
             };
 
+#pragma warning disable CS000
             var response = new ApplicationMessageResponse();
+#pragma warning restore CS000
 
             response.SetPayload( data );
 
@@ -25,9 +27,9 @@ namespace PebbleSharp.Core.Tests.Responses
             Assert.AreEqual( 1u, response.ParsdData["1"] );
             var expectedUUID = new UUID( new byte[]
             {
-                0x6B, 0xF6, 0x21, 0x5B, 
-                0xC9, 0x7F, 0x40, 0x9E, 
-                0x8C, 0x31, 0x4F, 0x55, 
+                0x6B, 0xF6, 0x21, 0x5B,
+                0xC9, 0x7F, 0x40, 0x9E,
+                0x8C, 0x31, 0x4F, 0x55,
                 0x65, 0x72, 0x22, 0xB4
             } );
             Assert.AreEqual( expectedUUID, response.TargetUUID );

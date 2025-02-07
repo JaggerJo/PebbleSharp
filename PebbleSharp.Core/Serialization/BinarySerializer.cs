@@ -13,12 +13,12 @@ namespace PebbleSharp.Core.Serialization
             object rv = new T();
             foreach (PropertyInfo property in
                 from prop in typeof (T).GetRuntimeProperties()
-                let attribute = prop.GetCustomAttribute<SerializableAttribute>()
+                let attribute = prop.GetCustomAttribute<PebbleSerializableAttribute>()
                 where attribute != null && prop.CanWrite
                 orderby attribute.Order, prop.Name
                 select prop)
             {
-                var attribute = property.GetCustomAttribute<SerializableAttribute>();
+                var attribute = property.GetCustomAttribute<PebbleSerializableAttribute>();
 
                 if (property.PropertyType == typeof (byte))
                 {

@@ -3,7 +3,7 @@
 namespace PebbleSharp.Core.Serialization
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-    public class SerializableAttribute : Attribute
+    public class PebbleSerializableAttribute : Attribute
     {
         private int _size;
 

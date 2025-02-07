@@ -17,9 +17,12 @@ namespace PebbleSharp.Net45
         {
             var client = new BluetoothClient();
 
-            // A list of all BT devices that are paired, in range, and named "Pebble *" 
-            var bluetoothDevices = client.DiscoverDevices( 20, true, false, false ).
-                Where( bdi => bdi.DeviceName.StartsWith( "Pebble " ) ).ToList();
+            // A list of all BT devices that are paired, in range, and named "Pebble *"
+            var bluetoothDevices =
+                client
+                    //.DiscoverDevices( 20, true, false, false )
+                    .DiscoverDevices(20)
+                    .Where( bdi => bdi.DeviceName.StartsWith( "Pebble " ) ).ToList();
 
             return ( from device in bluetoothDevices
                      select (Pebble)new PebbleNet45( new PebbleBluetoothConnection( device ),
@@ -68,7 +71,7 @@ namespace PebbleSharp.Net45
                 {
                     _tokenSource.Cancel();
                 }
-                
+
                 if ( _client.Connected )
                 {
                     _client.Close();

@@ -4,17 +4,17 @@ namespace PebbleSharp.Core
 {
     public struct App
     {
-        [Serializable(Order = 0)]
+        [PebbleSerializable(Order = 0)]
         public uint ID { get; set; }
-        [Serializable(Order = 1)]
+        [PebbleSerializable(Order = 1)]
         public uint Index { get; set; }
-        [Serializable(Order = 2, Size = 32)]
+        [PebbleSerializable(Order = 2, Size = 32)]
         public string Name { get; set; }
-        [Serializable(Order = 3, Size = 32)]
+        [PebbleSerializable(Order = 3, Size = 32)]
         public string Company { get; set; }
-        [Serializable(Order = 4)]
+        [PebbleSerializable(Order = 4)]
         public uint Flags { get; set; }
-        [Serializable(Order = 5)]
+        [PebbleSerializable(Order = 5)]
         public ushort Version { get; set; }
 
         /// <summary> A string representation of the app version. </summary>
