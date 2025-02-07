@@ -1,9 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using System.Windows.Threading;
+﻿using System.Windows.Input;
+using Avalonia.Controls;
+using Avalonia.Threading;
 using GalaSoft.MvvmLight.Command;
-using Microsoft.Win32;
 using PebbleSharp.Core;
 using PebbleSharp.Core.Bundles;
 using PebbleSharp.Core.Responses;
@@ -87,28 +85,28 @@ namespace PebbleSharp.WPF.ViewModels
 
         private async void OnUpdateFirmware()
         {
-            var openDialog = new OpenFileDialog
-            {
-                CheckFileExists = true,
-                CheckPathExists = true,
-                DefaultExt = "*.pbz",
-                Filter = "Pebble Firmware|*.pbz|All Files|*",
-                RestoreDirectory = true,
-                Title = "Pebble Firmware"
-            };
-            if (openDialog.ShowDialog() == true)
-            {
-                var bundle = new FirmwareBundle();
-                using (var zip = new Zip())
-                {
-                    zip.Open(openDialog.OpenFile());
-                    bundle.Load(zip,_pebble.Firmware.HardwarePlatform.GetSoftwarePlatform());
-                }
-
-                if (_pebble.IsAlive == false)
-                    return;
-                await _pebble.InstallClient.InstallFirmwareAsync(bundle);
-            }
+            //var openDialog = new OpenFileDialog
+            //{
+            //    CheckFileExists = true,
+            //    CheckPathExists = true,
+            //    DefaultExt = "*.pbz",
+            //    Filter = "Pebble Firmware|*.pbz|All Files|*",
+            //    RestoreDirectory = true,
+            //    Title = "Pebble Firmware"
+            //};
+            //if (openDialog.ShowDialog() == true)
+            //{
+            //    var bundle = new FirmwareBundle();
+            //    using (var zip = new Zip())
+            //    {
+            //        zip.Open(openDialog.OpenFile());
+            //        bundle.Load(zip,_pebble.Firmware.HardwarePlatform.GetSoftwarePlatform());
+            //    }
+//
+            //    if (_pebble.IsAlive == false)
+            //        return;
+            //    await _pebble.InstallClient.InstallFirmwareAsync(bundle);
+            //}
         }
 
         private async Task LoadPebbleTimeAsync()

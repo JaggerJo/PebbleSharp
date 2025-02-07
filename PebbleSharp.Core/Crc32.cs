@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace PebbleSharp.Core
 {
-    internal static class Crc32
+    public static class Crc32
     {
         private const uint CRC_POLY = 0x04C11DB7;
 
@@ -24,7 +24,7 @@ namespace PebbleSharp.Core
             {
                 crc = ProcessWord(GetUInt32(buffer, i*4), crc);
             }
-            return crc; 
+            return crc;
         }
 
         private static uint GetUInt32(byte[] buffer, int start)
@@ -40,7 +40,7 @@ namespace PebbleSharp.Core
         private static uint ProcessWord( uint word, uint crc )
         {
             crc ^= word;
-            
+
             foreach (int i in Enumerable.Range(0, 32))
             {
                 if (( crc & 0x80000000 ) != 0)

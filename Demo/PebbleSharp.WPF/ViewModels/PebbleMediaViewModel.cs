@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
-using System.Windows;
-using System.Windows.Data;
 using System.Windows.Input;
+using Avalonia.Threading;
 using GalaSoft.MvvmLight.Command;
 using PebbleSharp.Core;
 using PebbleSharp.Core.Responses;
@@ -21,10 +20,7 @@ namespace PebbleSharp.WPF.ViewModels
             _commandsReceived = new BindingList<string>();
         }
 
-        public ICollectionView CommandsReceived
-        {
-            get { return CollectionViewSource.GetDefaultView( _commandsReceived ); }
-        }
+        public IList<string> CommandsReceived => _commandsReceived;
 
         public ICommand SetNowPlayingCommand
         {
@@ -91,13 +87,12 @@ namespace PebbleSharp.WPF.ViewModels
             }
         }
 
-        private void AddCommandReceived( string command )
+        private void AddCommandReceived(string command)
         {
-            var dispatcher = Application.Current.Dispatcher;
-            if ( dispatcher.CheckAccess() == false )
-                dispatcher.Invoke( () => _commandsReceived.Add( command ) );
-            else
-                _commandsReceived.Add( command );
+            Dispatcher.UIThread.Invoke(() =>
+            {
+                _commandsReceived.Add(command);
+            });
         }
 
 

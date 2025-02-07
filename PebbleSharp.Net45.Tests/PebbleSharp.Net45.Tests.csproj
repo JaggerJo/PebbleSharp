@@ -15,4 +15,8 @@
     <ProjectReference Include="..\PebbleSharp.Net45\PebbleSharp.Net45.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
 </Project>

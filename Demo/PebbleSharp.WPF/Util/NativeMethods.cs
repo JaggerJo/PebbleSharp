@@ -13,15 +13,15 @@ namespace PebbleSharp.WPF.Util
 
         public static void SendMessage( AppCommandCode command )
         {
-            if (command == AppCommandCode.None)
-                throw new ArgumentException("A command is required", "command");
-
-            var commandId = (IntPtr)( (int) command << 16 );
-            var windowHandle = App.MainWindowHandle;
-            if (windowHandle != IntPtr.Zero)
-            {
-                SendMessageW( windowHandle, WM_APPCOMMAND, windowHandle, commandId );
-            }
+            //if (command == AppCommandCode.None)
+            //    throw new ArgumentException("A command is required", "command");
+//
+            //var commandId = (IntPtr)( (int) command << 16 );
+            //var windowHandle = App.MainWindowHandle;
+            //if (windowHandle != IntPtr.Zero)
+            //{
+            //    SendMessageW( windowHandle, WM_APPCOMMAND, windowHandle, commandId );
+            //}
         }
     }
 

@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel;
-using System.Threading.Tasks;
-using System.Windows.Data;
 using System.Windows.Input;
+using Avalonia.Controls;
 using GalaSoft.MvvmLight.Command;
-using Microsoft.Win32;
 using PebbleSharp.Core;
 using PebbleSharp.Core.Bundles;
 using PebbleSharp.WPF.Messages;
@@ -24,10 +22,7 @@ namespace PebbleSharp.WPF.ViewModels
             _installAppCommand = new RelayCommand( OnInstallApp );
         }
 
-        public ICollectionView Apps
-        {
-            get { return CollectionViewSource.GetDefaultView( _apps ); }
-        }
+        public IList<Core.App> Apps => _apps;
 
         public ICommand RemoveAppCommand
         {
@@ -78,29 +73,29 @@ namespace PebbleSharp.WPF.ViewModels
 
         private async void OnInstallApp()
         {
-            var openDialog = new OpenFileDialog
-            {
-                CheckFileExists = true,
-                CheckPathExists = true,
-                DefaultExt = "*.pbw",
-                Filter = "Pebble Apps|*.pbw|All Files|*",
-                RestoreDirectory = true,
-                Title = "Pebble App"
-            };
-            if ( openDialog.ShowDialog() == true )
-            {
-                var bundle = new AppBundle();
-                using (var zip = new Zip())
-                {
-                    zip.Open(openDialog.OpenFile());
-                    bundle.Load(zip,_pebble.Firmware.HardwarePlatform.GetSoftwarePlatform());
-                }
-
-                if ( _pebble.IsAlive == false )
-                    return;
-                await _pebble.InstallClient.InstallAppAsync( bundle );
-                await LoadAppsAsync();
-            }
+            //var openDialog = new OpenFileDialog
+            //{
+            //    CheckFileExists = true,
+            //    CheckPathExists = true,
+            //    DefaultExt = "*.pbw",
+            //    Filter = "Pebble Apps|*.pbw|All Files|*",
+            //    RestoreDirectory = true,
+            //    Title = "Pebble App"
+            //};
+            //if ( openDialog.ShowDialog() == true )
+            //{
+            //    var bundle = new AppBundle();
+            //    using (var zip = new Zip())
+            //    {
+            //        zip.Open(openDialog.OpenFile());
+            //        bundle.Load(zip,_pebble.Firmware.HardwarePlatform.GetSoftwarePlatform());
+            //    }
+//
+            //    if ( _pebble.IsAlive == false )
+            //        return;
+            //    await _pebble.InstallClient.InstallAppAsync( bundle );
+            //    await LoadAppsAsync();
+            //}
         }
     }
 }

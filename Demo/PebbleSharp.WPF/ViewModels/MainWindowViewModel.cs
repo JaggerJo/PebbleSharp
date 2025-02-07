@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows;
-using System.Windows.Data;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using PebbleSharp.Net45;
 
 namespace PebbleSharp.WPF.ViewModels
@@ -24,15 +18,13 @@ namespace PebbleSharp.WPF.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    //MessageBox.Show(ex.Message);
+                    Console.WriteLine(ex.Message);
                 }
-                
+
             }
         }
 
-        public ICollectionView PebbleDevices
-        {
-            get { return CollectionViewSource.GetDefaultView( _pebbleDevices ); }
-        }
+        public IList<PebbleViewModel> PebbleDevices => _pebbleDevices;
     }
 }
